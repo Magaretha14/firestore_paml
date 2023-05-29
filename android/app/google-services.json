@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "130357788530",
+    "project_id": "firestorepaml",
+    "storage_bucket": "firestorepaml.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130357788530:android:81e596e09ab4974ad8a7eb",
+        "android_client_info": {
+          "package_name": "com.example.firestore_db"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM6vZl41mV7JFSWyeRp4dW_zZDY-Do_8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130357788530:android:8a9afc81c6778232d8a7eb",
+        "android_client_info": {
+          "package_name": "com.tiumy.firestoredb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM6vZl41mV7JFSWyeRp4dW_zZDY-Do_8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
