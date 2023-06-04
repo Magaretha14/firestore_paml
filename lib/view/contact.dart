@@ -69,7 +69,8 @@ class _ContactState extends State<Contact> {
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
-                                  cc.removeContact(data[index]['id']);
+                                  cc.removeContact(
+                                      data[index]['id'].toString());
                                   setState(() {
                                     cc.getContact();
                                   });
