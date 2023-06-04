@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_db/controller/contact_controller.dart';
-import 'package:firestore_db/model/contact_model.dart';
 import 'package:firestore_db/view/add_contact.dart';
+import 'package:firestore_db/view/update_contact.dart';
 import 'package:flutter/material.dart';
 
 class Contact extends StatefulWidget {
@@ -49,7 +49,19 @@ class _ContactState extends State<Contact> {
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: InkWell(
-                          onLongPress: () {},
+                          onLongPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdateContact(
+                                    id: data[index]['id'],
+                                    name: data[index]['name'],
+                                    phone: data[index]['phone'],
+                                    email: data[index]['email'],
+                                    address: data[index]['address']),
+                              ),
+                            );
+                          },
                           child: Card(
                             elevation: 10,
                             child: ListTile(
@@ -74,6 +86,10 @@ class _ContactState extends State<Contact> {
                                   setState(() {
                                     cc.getContact();
                                   });
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Contact Deleted')));
                                 },
                               ),
                             ),
