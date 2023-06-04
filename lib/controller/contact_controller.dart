@@ -28,6 +28,12 @@ class ContactController {
     await docRef.update(contactModel.toMap());
   }
 
+  Future<void> removeContact(String id) async {
+    final DocumentReference docRef = contactCollection.doc(id);
+
+    await docRef.delete();
+  }
+
   Future getContact() async {
     final contact = await contactCollection.get();
     streamController.add(contact.docs);

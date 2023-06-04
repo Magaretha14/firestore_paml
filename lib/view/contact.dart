@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_db/controller/contact_controller.dart';
+import 'package:firestore_db/model/contact_model.dart';
 import 'package:firestore_db/view/add_contact.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,12 @@ class _ContactState extends State<Contact> {
                               subtitle: Text(data[index]['phone']),
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
-                                onPressed: () {},
+                                onPressed: () {
+                                  cc.removeContact(data[index]['id']);
+                                  setState(() {
+                                    cc.getContact();
+                                  });
+                                },
                               ),
                             ),
                           ),
