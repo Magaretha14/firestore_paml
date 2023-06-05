@@ -66,7 +66,7 @@ class _ContactState extends State<Contact> {
                             elevation: 10,
                             child: ListTile(
                               leading: CircleAvatar(
-                                backgroundColor: Colors.blue,
+                                backgroundColor: Colors.purpleAccent,
                                 child: Text(
                                   data[index]['name']
                                       .substring(0, 1)
