@@ -28,8 +28,7 @@ class ContactController {
     await docRef.update(contactModel.toMap());
   }
 
-  Future<void> updateContact(ContactModel ctmodel, String id, String name,
-      String phone, String email, String address) async {
+  Future<void> updateContact(ContactModel ctmodel) async {
     final ContactModel contactModel = ContactModel(
         id: ctmodel.id,
         name: ctmodel.name,
@@ -37,7 +36,7 @@ class ContactController {
         phone: ctmodel.phone,
         address: ctmodel.address);
 
-    await contactCollection.doc(id).update(contactModel.toMap());
+    await contactCollection.doc(ctmodel.id).update(contactModel.toMap());
   }
 
   Future<void> removeContact(String id) async {

@@ -46,28 +46,28 @@ class _UpdateContactState extends State<UpdateContact> {
             children: [
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Name'),
-                onChanged: (value) {
+                onSaved: (value) {
                   newname = value;
                 },
                 initialValue: widget.name,
               ),
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Phone'),
-                onChanged: (value) {
+                onSaved: (value) {
                   newphone = value;
                 },
                 initialValue: widget.phone,
               ),
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Email'),
-                onChanged: (value) {
+                onSaved: (value) {
                   newemail = value;
                 },
                 initialValue: widget.email,
               ),
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Address'),
-                onChanged: (value) {
+                onSaved: (value) {
                   newaddress = value;
                 },
                 initialValue: widget.address,
@@ -77,12 +77,12 @@ class _UpdateContactState extends State<UpdateContact> {
                   if (formkey.currentState!.validate()) {
                     formkey.currentState!.save();
                     ContactModel cm = ContactModel(
+                        id: widget.id,
                         name: newname!.toString(),
                         phone: newphone!.toString(),
                         email: newemail!.toString(),
                         address: newaddress!.toString());
-                    contactController.updateContact(cm, widget.id.toString(),
-                        newname!, newphone!, newemail!, newaddress!);
+                    contactController.updateContact(cm);
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Contact Changed')));
 
