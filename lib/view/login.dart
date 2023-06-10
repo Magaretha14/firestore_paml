@@ -2,9 +2,8 @@ import 'package:firestore_db/controller/auth_controller.dart';
 import 'package:firestore_db/model/user_model.dart';
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
-  Register({super.key});
-
+class Login extends StatelessWidget {
+  Login({super.key});
   final formkey = GlobalKey<FormState>();
 
   final authCr = AuthController();
