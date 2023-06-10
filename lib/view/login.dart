@@ -16,7 +16,6 @@ class Login extends StatelessWidget {
 
     String? password;
 
-    bool _obscureText = true;
     return Scaffold(
       body: SafeArea(
         child: Padding(
