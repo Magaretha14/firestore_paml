@@ -1,5 +1,6 @@
 import 'package:firestore_db/controller/auth_controller.dart';
 import 'package:firestore_db/model/user_model.dart';
+import 'package:firestore_db/view/login.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatelessWidget {
@@ -37,6 +38,7 @@ class Register extends StatelessWidget {
                   },
                 ),
                 TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(hintText: 'Password'),
                   onChanged: (value) {
                     password = value;
@@ -62,10 +64,10 @@ class Register extends StatelessWidget {
                                 TextButton(
                                   onPressed: () {
                                     print(registeredUser.name);
-                                    // Navigator.push(context,
-                                    //     MaterialPageRoute(builder: (context) {
-                                    //   return Login();
-                                    // }));
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return Login();
+                                    }));
                                     // Navigate to the next screen or perform any desired action
                                   },
                                   child: const Text('OK'),

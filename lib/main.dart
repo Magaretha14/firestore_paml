@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_db/view/add_contact.dart';
 import 'package:firestore_db/view/contact.dart';
+import 'package:firestore_db/view/login.dart';
 import 'package:firestore_db/view/register.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Register(),
+      home: Login(),
     );
   }
 }
