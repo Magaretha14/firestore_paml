@@ -10,6 +10,7 @@ class AddContact extends StatefulWidget {
   State<AddContact> createState() => _AddContactState();
 }
 
+///Fungsi untuk menambahkan kontak
 class _AddContactState extends State<AddContact> {
   var contactController = ContactController();
 
@@ -20,6 +21,7 @@ class _AddContactState extends State<AddContact> {
   String? email;
   String? address;
 
+  ///Fungsi untuk menambahkan kontak dengan menampilkan form
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,42 +34,55 @@ class _AddContactState extends State<AddContact> {
           key: formkey,
           child: Column(
             children: [
+              /// Input untuk nama kontak
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Name'),
                 onChanged: (value) {
                   name = value;
                 },
               ),
+
+              /// Input untuk nomor telepon kontak
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Phone'),
                 onChanged: (value) {
                   phone = value;
                 },
               ),
+
+              /// Input untuk alamat email kontak
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Email'),
                 onChanged: (value) {
                   email = value;
                 },
               ),
+
+              /// Input untuk alamat kontak
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Address'),
                 onChanged: (value) {
                   address = value;
                 },
               ),
+
+              /// Tombol untuk menambahkan kontak baru
               ElevatedButton(
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
+                    /// Membuat objek ContactModel dari input pengguna
                     ContactModel cm = ContactModel(
                         name: name!,
                         phone: phone!,
                         email: email!,
                         address: address!);
+
+                    /// Menambahkan kontak ke database menggunakan ContactController
                     contactController.addContact(cm);
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Contact Added')));
 
+                    /// Kembali ke halaman daftar kontak (Contact)
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -75,7 +90,6 @@ class _AddContactState extends State<AddContact> {
                       ),
                     );
                   }
-                  //print(cm);
                 },
                 child: const Text('Add Contact'),
               )

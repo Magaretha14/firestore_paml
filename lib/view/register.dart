@@ -10,13 +10,13 @@ class Register extends StatelessWidget {
 
   final authCr = AuthController();
 
+  ///Fungsi untuk tampilan register
   @override
   Widget build(BuildContext context) {
     String? name;
-
     String? email;
-
     String? password;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -25,18 +25,23 @@ class Register extends StatelessWidget {
             key: formkey,
             child: Column(
               children: [
+                /// Input untuk nama pengguna
                 TextFormField(
                   decoration: const InputDecoration(hintText: 'Name'),
                   onChanged: (value) {
                     name = value;
                   },
                 ),
+
+                /// Input untuk alamat email
                 TextFormField(
                   decoration: const InputDecoration(hintText: 'Email'),
                   onChanged: (value) {
                     email = value;
                   },
                 ),
+
+                /// Input untuk kata sandi (diberikan obscureText untuk menyembunyikan)
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(hintText: 'Password'),
@@ -44,15 +49,18 @@ class Register extends StatelessWidget {
                     password = value;
                   },
                 ),
+
+                /// Tombol untuk melakukan pendaftaran
                 ElevatedButton(
                   onPressed: () async {
                     if (formkey.currentState!.validate()) {
+                      /// Melakukan pendaftaran dengan email, kata sandi, dan nama
                       UserModel? registeredUser =
                           await authCr.registerWithEmailAndPassword(
                               email!, password!, name!);
 
                       if (registeredUser != null) {
-                        // Registration successful
+                        /// Tampilan pesan sukses jika pendaftaran berhasil
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -63,12 +71,11 @@ class Register extends StatelessWidget {
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    print(registeredUser.name);
+                                    /// Navigasi kembali ke halaman login setelah pendaftaran sukses
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
                                       return Login();
                                     }));
-                                    // Navigate to the next screen or perform any desired action
                                   },
                                   child: const Text('OK'),
                                 ),
@@ -77,7 +84,7 @@ class Register extends StatelessWidget {
                           },
                         );
                       } else {
-                        // Registration failed
+                        /// Tampilan pesan gagal jika pendaftaran gagal
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {

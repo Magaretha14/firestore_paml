@@ -11,15 +11,18 @@ class Contact extends StatefulWidget {
   State<Contact> createState() => _ContactState();
 }
 
+///Fungsi untuk menampilkan data kontak
 class _ContactState extends State<Contact> {
   var cc = ContactController();
 
   @override
   void initState() {
+    /// Memuat daftar kontak saat halaman dimuat
     cc.getContact();
     super.initState();
   }
 
+  ///Fungsi untuk menampilkan data kontak
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +39,7 @@ class _ContactState extends State<Contact> {
                 stream: cc.stream,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
+                    /// Menampilkan indikator loading saat data belum tersedia
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -50,6 +54,7 @@ class _ContactState extends State<Contact> {
                         padding: const EdgeInsets.all(5.0),
                         child: InkWell(
                           onLongPress: () {
+                            /// Navigasi ke halaman pembaruan kontak dengan mengirimkan data kontak yang ada
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -81,8 +86,11 @@ class _ContactState extends State<Contact> {
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
+                                  /// Menghapus kontak dengan mengirim ID kontak yang akan dihapus
                                   cc.removeContact(
                                       data[index]['id'].toString());
+
+                                  /// Memuat kembali daftar kontak setelah penghapusan
                                   setState(() {
                                     cc.getContact();
                                   });
@@ -106,6 +114,7 @@ class _ContactState extends State<Contact> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          /// Navigasi ke halaman tambah kontak
           Navigator.push(
             context,
             MaterialPageRoute(

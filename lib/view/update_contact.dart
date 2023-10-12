@@ -28,13 +28,12 @@ class _UpdateContactState extends State<UpdateContact> {
 
   final formkey = GlobalKey<FormState>();
 
-  //final List<DocumentSnapshot> data = snapshot.data!;
-
   String? newname;
   String? newphone;
   String? newemail;
   String? newaddress;
 
+  ///Fungsi tampilan untuk update kontak
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +43,7 @@ class _UpdateContactState extends State<UpdateContact> {
           key: formkey,
           child: Column(
             children: [
+              /// Input untuk mengedit nama
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Name'),
                 onSaved: (value) {
@@ -51,6 +51,8 @@ class _UpdateContactState extends State<UpdateContact> {
                 },
                 initialValue: widget.name,
               ),
+
+              /// Input untuk mengedit nomor telepon
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Phone'),
                 onSaved: (value) {
@@ -58,6 +60,8 @@ class _UpdateContactState extends State<UpdateContact> {
                 },
                 initialValue: widget.phone,
               ),
+
+              /// Input untuk mengedit alamat email
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Email'),
                 onSaved: (value) {
@@ -65,6 +69,8 @@ class _UpdateContactState extends State<UpdateContact> {
                 },
                 initialValue: widget.email,
               ),
+
+              /// Input untuk mengedit alamat
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Address'),
                 onSaved: (value) {
@@ -72,6 +78,8 @@ class _UpdateContactState extends State<UpdateContact> {
                 },
                 initialValue: widget.address,
               ),
+
+              /// Tombol untuk menyimpan perubahan kontak
               ElevatedButton(
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
@@ -86,6 +94,7 @@ class _UpdateContactState extends State<UpdateContact> {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Contact Changed')));
 
+                    /// Navigasi kembali ke halaman daftar kontak setelah mengedit
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -93,7 +102,6 @@ class _UpdateContactState extends State<UpdateContact> {
                       ),
                     );
                   }
-                  //print(cm);
                 },
                 child: const Text('Edit Contact'),
               )

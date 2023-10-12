@@ -9,6 +9,8 @@ class AuthController {
 
   bool get success => false;
 
+  /// Fungsi ini digunakan untuk melakukan proses masuk dengan email dan kata sandi.
+  /// Jika berhasil, akan mengembalikan UserModel. Jika tidak, akan mengembalikan null.
   Future<UserModel?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -35,6 +37,8 @@ class AuthController {
     return null;
   }
 
+  /// Fungsi ini digunakan untuk melakukan proses registrasi dengan email, kata sandi, dan nama.
+  /// Jika berhasil, akan mengembalikan UserModel baru. Jika tidak, akan mencetak pesan kesalahan dan mengembalikan null.
   Future<UserModel?> registerWithEmailAndPassword(
       String email, String password, String name) async {
     try {
@@ -57,6 +61,8 @@ class AuthController {
     return null;
   }
 
+  /// Fungsi ini digunakan untuk mendapatkan pengguna yang saat ini masuk.
+  /// Jika ada pengguna yang masuk, akan mengembalikan UserModel. Jika tidak, akan mengembalikan null.
   UserModel? getCurrentUser() {
     final User? user = auth.currentUser;
     if (user != null) {
@@ -65,6 +71,7 @@ class AuthController {
     return null;
   }
 
+  /// Fungsi ini digunakan untuk keluar dari sesi pengguna saat ini.
   Future<void> signOut() async {
     await auth.signOut();
   }

@@ -10,10 +10,10 @@ class Login extends StatelessWidget {
 
   final authCr = AuthController();
 
+  ///Fungsi untuk menampilkan form login dan login
   @override
   Widget build(BuildContext context) {
     String? email;
-
     String? password;
 
     return Scaffold(
@@ -24,12 +24,15 @@ class Login extends StatelessWidget {
             key: formkey,
             child: Column(
               children: [
+                /// Input untuk alamat email
                 TextFormField(
                   decoration: const InputDecoration(hintText: 'Email'),
                   onChanged: (value) {
                     email = value;
                   },
                 ),
+
+                /// Input untuk kata sandi (diberikan obscureText untuk menyembunyikan)
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(hintText: 'Password'),
@@ -37,30 +40,32 @@ class Login extends StatelessWidget {
                     password = value;
                   },
                 ),
+
+                /// Tombol untuk melakukan login
                 ElevatedButton(
                   onPressed: () async {
                     if (formkey.currentState!.validate()) {
+                      /// Melakukan login dengan email dan kata sandi
                       UserModel? registeredUser = await authCr
                           .signInWithEmailAndPassword(email!, password!);
 
                       if (registeredUser != null) {
-                        // Registration successful
+                        /// Tampilan pesan sukses jika login berhasil
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: const Text('Login Successful'),
                               content: const Text(
-                                  'You have been successfully login.'),
+                                  'You have been successfully logged in.'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    print(registeredUser.name);
+                                    /// Navigasi ke halaman kontak setelah login sukses
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
                                       return Contact();
                                     }));
-                                    //Navigate to the next screen or perform any desired action
                                   },
                                   child: const Text('OK'),
                                 ),
@@ -69,7 +74,7 @@ class Login extends StatelessWidget {
                           },
                         );
                       } else {
-                        // Registration failed
+                        /// Tampilan pesan gagal jika login gagal
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -93,6 +98,8 @@ class Login extends StatelessWidget {
                   },
                   child: const Text('Login'),
                 ),
+
+                /// Tombol untuk menuju halaman pendaftaran
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
